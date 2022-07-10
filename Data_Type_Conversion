@@ -5,6 +5,28 @@
 //#include <iomanip>
 using namespace std;
 
+//C++规定，当不同类型的数据进行运算符操作时，需先将数据转换成同一类型，然后才可以进行运算。
+//数据类型转换，可以通过两种形式完成：
+//1，隐式类型转换
+//2，显示类型转换
+// 
+//1，隐式类型转换
+//C++规定数据类型级别从高到低的顺序是：
+	//类型转换级别：【高->低】
+	//	doulbe->float->long int->int->short
+//当两个操作数类型不一致时，运算之前将级别低的自动转换成级别高的，然后再进行运算
+//char a = 4;
+//short b = 6;
+//int c = 0;
+//c = a + b;	//先把a转成short跟b做加法，然后把结果转成int赋值给c
+//
+//2，显示类型转换
+//现实转换有两种方法：
+//(1)强制转换法
+//		(类型名)表达式		(float)(5%2)
+//(2)函数法
+//		类型名(表达式)		float(a+b)
+
 class Complex {
 	double real;
 	double image;
@@ -17,6 +39,7 @@ public:
 	operator float() const;	//成员函数，构造、析构、非成员函数不允许使用类型限定符(const)
 	operator int() const;	//只有成员函数才使用"::"作用域符号；
 	void print() const;
+	~Complex();
 };
 
 Complex::Complex(void)
@@ -58,6 +81,10 @@ Complex::operator float() const
 Complex::operator int() const
 {
 	return int(real);
+}
+
+Complex::~Complex()
+{
 }
 
 int main()
